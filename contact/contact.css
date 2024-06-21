@@ -1,0 +1,82 @@
+body {
+  font-weight: normal;
+  color: #333333;
+  font-family: メイリオ;
+  font-size: 16px;
+  }
+  
+ .wrapper{
+    max-width: 1200px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+ }
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+}
+
+.header h1{
+  margin-right: auto;
+}
+
+.btn01{
+  width: 150px;
+	text-align: center;
+	background-color: #d35850;
+	color: #fff;
+	padding: 15px 20px;
+  margin-right: 10px;
+}
+
+.btn02{
+  width: 150px;
+	text-align: center;
+	background-color: #337a36;
+	color: #fff;
+	padding: 15px 20px;
+}
+
+.menu{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+p{
+  margin-right: auto;
+  margin-left: auto;
+}
+
+img{
+  max-width: 100%;
+  padding-bottom: 70px;
+}
+
+.sec_01 h1{
+  padding-bottom: 30px;
+}
+
+.sec_01{
+  text-align: center;
+  border-bottom: 1px solid #b3b3b3;
+  padding-bottom: 80px;
+  margin-bottom: 30px;
+}
+
+.name{
+  display: flex;
+  
+}
+
+.hissu{
+  width: 35px;
+  font-size: 16px;
+  display: block;
+  color: #fff;
+  background-color: #d14747;
+  border-radius: 3px;
+}
