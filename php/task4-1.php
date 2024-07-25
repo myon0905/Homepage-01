@@ -11,11 +11,11 @@ $randNum = mt_rand(1, 100); // 1から100までの乱数を生成
 
 if ($randNum <= 5) {
   $fortune = '大凶';
-} elseif ($randNum <= 15) {
+} elseif ($randNum <= 20) {
   $fortune = '凶';
-} elseif ($randNum <= 30) {
+} elseif ($randNum <= 50) {
   $fortune = '吉';
-} elseif ($randNum <= 30) {
+} elseif ($randNum <= 80) {
   $fortune = '中吉';
 } else {
   $fortune = '大吉';

@@ -25,7 +25,6 @@ $kesigomu = 200;
 echo '<p>鉛筆が' . $enpitu . '円で税込' . $enpitu * TAX . '円です。</p>';
 
 echo '<p>消しゴムが' . $kesigomu . '円で税込' . $kesigomu * TAX . '円です。</p>';
-echo '<p>消しゴムが {$kesigomu} 円で税込 $kesigomu * TAX 円です</p>';//??
 echo "<p>消しゴムが  $kesigomu  円で税込  " . $kesigomu*TAX . "  円です。</p>";
 
 ?>

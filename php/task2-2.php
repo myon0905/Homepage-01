@@ -8,31 +8,31 @@
 <body>
 
   <?php
-    $a = array('name' => '商品名', 'pen' => '鉛筆', 'era' => '消しゴム', 'rul' => '定規');
-    $b = array('pri' => '価格', 'ppen' => '100円', 'pera' => '200円', 'prul' => '300円');
-    $c = array('tax' => '税込価格', 'tpen' => '110円', 'tera' => '220円', 'trul' => '330円');
+    $a = array('pen' => '鉛筆', 'ppen' => '100円', 'tpen' => '110円');
+    $b = array('era' => '消しゴム', 'pera' => '200円', 'tera' => '220円');
+    $c = array('rul' => '定規', 'prul' => '300円', 'trul' => '330円');
   ?>
 
   <table border="1"style="width: 300px;border-collapse: collapse">
     <tbody style="text-aling: center;">
     <tr>
-      <th><?= $a[name] ?></th>
-      <th style="width: 100px;"><?= $b[pri] ?></th>
-      <th><?= $c[tax] ?></th>
+      <th>商品名</th>
+      <th style="width: 100px;">価格</th>
+      <th>税込価格</th>
     </tr>
     <tr>
       <td><?= $a[pen] ?></td>
-      <td><?= $b[ppen] ?></td>
-      <td><?= $c[tpen] ?></td>
+      <td><?= $a[ppen] ?></td>
+      <td><?= $a[tpen] ?></td>
     </tr>
     <tr>
-      <td><?= $a[era] ?></td>
+      <td><?= $b[era] ?></td>
       <td><?= $b[pera] ?></td>
-      <td><?= $c[tera] ?></td>
+      <td><?= $b[tera] ?></td>
     </tr>
     <tr>
-      <td><?= $a[rul] ?></td>
-      <td><?= $b[prul] ?></td>
+      <td><?= $c[rul] ?></td>
+      <td><?= $c[prul] ?></td>
       <td><?= $c[trul] ?></td>
     </tr>
   </tbody>

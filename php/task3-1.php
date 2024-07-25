@@ -9,32 +9,37 @@
 
   <?php
     define('TAX', 1.1);
-    $a = array('name' => '商品名', 'pen' => '鉛筆', 'era' => '消しゴム', 'rul' => '定規');
-    $b = array('pri' => '価格', 'ppen' => '100円', 'pera' => '200円', 'prul' => '300円');
-    $c = array('tax' => '税込価格',);
-    $d = array('Dz' => '1Dzの価格')
+    $a = array('pen' => '鉛筆', 'ppen' => '100円');
+    $b = array('era' => '消しゴム', 'pera' => '200円');
+    $c = array('rul' => '定規', 'prul' => '300円');
   ?>
 
   <table border="1"style="width: 500px;border-collapse: collapse">
     <tbody style="text-aling: center;">
     <tr>
-      <th style="width: 500px;"><?= $a[name] ?></th>
-      <th style="width: 500px;"><?= $b[pri] ?></th>
-      <th style="width: 500px;"><?= $c[tax] ?></th>
-      <th style="width: 500px;"><?= $d[Dz] ?></th>
+      <th style="width: 500px;">商品名</th>
+      <th style="width: 500px;">価格</th>
+      <th style="width: 500px;">税込価格</th>
+      <th style="width: 500px;">1Dzの価格</th>
     </tr>
     <tr>
     <tr>
       <td><?= $a[pen] ?></td>
-      <td><?= $b[ppen] ?></td>
-      <td><?= $b[ppen]*TAX ?>円</td>
-      <td><?= $b[ppen]*TAX*12 ?>円</td>
+      <td><?= $a[ppen] ?></td>
+      <td><?= $a[ppen]*TAX ?>円</td>
+      <td><?= $a[ppen]*TAX*12 ?>円</td>
     </tr>
     <tr>
-      <td><?= $a[era] ?></td>
+      <td><?= $b[era] ?></td>
       <td><?= $b[pera] ?></td>
       <td><?= $b[pera]*TAX ?>円</td>
       <td><?= $b[pera]*TAX*12 ?>円</td>
+    </tr>
+    <tr>
+      <td><?= $c[rul] ?></td>
+      <td><?= $c[prul] ?></td>
+      <td><?= $c[prul]*TAX ?>円</td>
+      <td><?= $c[prul]*TAX*12 ?>円</td>
     </tr>
   </tbody>
   </table>
