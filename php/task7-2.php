@@ -48,25 +48,35 @@
         printf('時給: %d円 ', $this->jikyu);
     }
   }
+  $staff = [];
+  $staff[] = new Staff("佐藤 一郎", 31, "男性");
+  $staff[] = new Staff("山田 花子", 25, "女性");
+  $staff[] = new Staff("鈴木 次郎", 27, "男性");
+  $staff[] = new PartStaff("田中 友子", 24, "女性", 900);
+  $staff[] = new Staff("中村 三郎", 27, "男性");
+  $staff[] = new PartStaff("田中 友", 17, "女性", 930500);
 
-  $staff1 = new Staff("佐藤 一郎", 31, "男性");
-  $staff2 = new Staff("山田 花子", 25, "女性");
-  $staff3 = new Staff("鈴木 次郎", 27, "男性");
-  $partStaff1 = new PartStaff("田中 友子", 24, "女性", 900);
-  $staff5 = new Staff("中村 三郎", 27, "男性");
-  $partStaff2 = new PartStaff("田中 友", 17, "女性", 930500);//partstaffカウンターのテスト
 
-  $staff1->show();
-  echo "<br>";
-  $staff2->show();
-  echo "<br>";
-  $staff3->show();
-  echo "<br>";
-  $partStaff1->show();
-  echo "<br>";
-  $staff5->show();
-  echo "<br>";
-  $partStaff2->show();
+  foreach ($staff as $member) {
+    $member->show();
+    echo '<br>';
+}
+
+
+  // $staff[1]->show();
+  // echo "<br>";
+  // $staff[2]->show();
+  // echo "<br>";
+  // $staff[3]->show();
+  // echo "<br>";
+  // $partStaff[1]->show();
+  // echo "<br>";
+  // $staff[4]->show();
+  // echo "<br>";
+  // $partStaff[2]->show();
+
+
+
 
   ?>
 </body>

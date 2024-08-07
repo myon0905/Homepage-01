@@ -23,19 +23,23 @@
     }
     
     public function show(){
-      printf('(%s) %s %d歳 %s <br/>',$this->id, $this->name, $this->age, $this->sex);
+      printf('(%s) %s %d歳 %s ',$this->id, $this->name, $this->age, $this->sex);
     }
     
   }
+    $staff = [];
+    $staff[1] = new Staff("佐藤 一郎", 31, "男性");
+    $staff[2] = new Staff("山田 花子", 25, "女性");
+    $staff[3] = new Staff("鈴木 次郎", 27, "男性");
 
-    $staff1 = new Staff("佐藤 一郎", 31, "男性");
-    $staff2 = new Staff("山田 花子", 25, "女性");
-    $staff3 = new Staff("鈴木 次郎", 27, "男性");
-    $staff1->show(1);
-    $staff2->show(2);
-    $staff3->show(3);
+    // $staff[1]->show();
+    // $staff[2]->show();
+    // $staff[3]->show();
     
-
+    foreach ($staff as $member) {
+      $member->show();
+      echo '<br>';
+  }
   
 
   ?>
