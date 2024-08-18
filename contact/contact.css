@@ -63,6 +63,7 @@ img{
 }
 
 .sec_01{
+  max-width: 720px;
   text-align: center;
   padding-bottom: 80px;
   margin-bottom: 30px;

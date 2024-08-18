@@ -18,8 +18,8 @@
   $avg1 = avg($num1, $num2);
   $avg2 = avg(1.2, 5.3);
 
-  echo "{$num1}と{$num2}の平均値は、{$avg1}です。<br>"
-  echo "1.2と5.3の平均値は、{$avg2}です。"
+  echo "{$num1}と{$num2}の平均値は、{$avg1}です。<br>";
+  echo "1.2と5.3の平均値は、{$avg2}です。";
   
   ?>
 </body>

@@ -36,51 +36,10 @@
     お問合せや業務内容に関するご質問は、電話またはこちらのお問合せフォームより承っております。
     <br>後ほど担当者よりご連絡させていただきます。
   </p>
+  <h1 style="padding-top: 30px;">送信完了</h1>
 </div>
 
-<div class="Form">
-  <form action="task8-1.php" method="post">
-    <div class="Form-Item">
-      <p class="Form-Item-Label">
-        <span class="Form-Item-Label-Required">必須</span>お名前
-      </p>
-      <input type="text" class="Form-Item-Input" placeholder="山田太郎" name="name" >
-    </div>
-    <div class="Form-Item">
-      <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>フリガナ</p>
-      <input type="text" class="Form-Item-Input" placeholder="ヤマダタロウ" name="furigana">
-    </div>
-    <div class="Form-Item">
-      <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>メールアドレス</p>
-      <input type="text" class="Form-Item-Input" placeholder="example@gmail.com" name="email" >
-    </div>
-    <div class="Form-Item">
-      <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>電話番号</p>
-      <input type="text" class="Form-Item-Input" placeholder="00000000000" name="tel" >
-    </div>
 
-    <div class="Form-Item">
-      <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>お問合せ項目</p>
-      <select class="Form-Item-Input" tabindex="0" name="select">
-        <option option value tabindex="0" selected>選択してください</option>
-        <option value="選択1" tabindex="1">選択1</option>
-        <option value="選択2" tabindex="2">選択2</option>
-        <option value="選択3" tabindex="3">選択3</option>
-      </select>
-    </div>
-
-    <div class="Form-Item">
-      <p class="Form-Item-Label isMsg"><span class="Form-Item-Label-Required">必須</span>お問い合わせ内容</p>
-      <textarea class="Form-Item-Textarea" name="inq"></textarea>
-    </div>
-    <div class="Form-Item">
-      <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>個人情報保護方針</p>
-      <input type="checkbox" style="margin-left: 35px;" name="check">
-      <span><a class="PII" href="https://www.google.co.jp/">個人情報保護方針</a>に同意します。</span>
-    </div>
-    <input type="submit" class="Form-Btn" value="確認">
-  </form>
-</div>
 
 <div class="sec_05">
   <div class="btn_red">

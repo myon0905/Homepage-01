@@ -1,45 +1,3 @@
-<?php
-
-  $name = $_POST["name"];
-  $furigana = $_POST["furigana"];
-  $email = $_POST["email"];
-  $tel = $_POST["tel"];
-  $inq = $_POST["inq"];
-
-  //if文使って入力確認
-  $errors = [];
-
-  if (empty($_POST['name'])) {
-      $errors[] = "名前が未入力です。";
-  }
-
-  if (empty($_POST['furigana'])) {
-      $errors[] = "フリガナが未入力です。";
-  }
-
-  if (empty($_POST['email'])) {
-      $errors[] = "メールアドレスが未入力です。";
-  }
-
-  if (empty($_POST['tel'])) {
-      $errors[] = "電話番号が未入力です。";
-  }
-
-  if (empty($_POST['inq'])) {
-      $errors[] = "お問い合わせ内容が未入力です。";
-  }  
-  
-  if ($errors) {
-      foreach ($errors as $error) {
-          echo $error;
-      }
-  } else {
-      echo "全ての入力が確認されました。";
-  }
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -80,36 +38,117 @@
   </p>
 </div>
 
+<?php
+  $action = $allok ? 'task8-2.php' : 'task8-1.php';
+  $name = $_POST["name"];
+  $furigana = $_POST["furigana"];
+  $email = $_POST["email"];
+  $tel = $_POST["tel"];
+  $sel = $_POST["select"];
+  $inq = $_POST["inq"];
+  $check = $_POST["check"];
+  $allok = false;
+
+
+  //if文使って入力確認
+  $errors = [];
+
+  if (empty($name)) {
+      $errors[] = "名前が未入力です。";
+  }
+
+  if (empty($furigana)) {
+      $errors[] = "フリガナが未入力です。";
+  }
+
+  if (empty($email)) {
+      $errors[] = "メールアドレスが未入力です。";
+  }elseif(strpos($email,'@') === false){
+      $errors[] = "@が含まれていません。";
+  }
+
+  if (empty($tel)) {
+      $errors[] = "電話番号が未入力です。";
+  } elseif (strlen($tel) != 10 && strlen($tel) != 11) {
+    $errors[] = "電話番号は10桁または11桁で入力してください。";
+  }
+
+  if (empty($sel)) {
+      $errors[] = "お問い合わせ内容が未選択です。";
+  }
+
+  if (empty($inq)) {
+      $errors[] = "お問い合わせ内容が未入力です。";
+  }  elseif (strlen($inq) < 10 || strlen($inq) > 256) {
+    $errors[] = "10文字以上 256文字以内で入力してください";
+  }
+
+  if (empty($check)) {
+      $errors[] = "チェックが入っていません。";
+  }  
+  
+  if ($errors) {
+      foreach ($errors as $error) {
+          echo "<span style='color: red;'> $error <br></span>";
+      }
+      $allok = false;
+  } else {
+      echo "全ての入力が確認されました。";
+      $allok = true;
+  }
+
+  $action = $allok ? 'task8-2.php' : 'task8-1.php';
+?>
+
 <div class="Form">
-  <form action="task8-1.php" method="post">
+  <form action="<?= $action ?>" method="post">
     <div class="Form-Item">
       <p class="Form-Item-Label">
         <span class="Form-Item-Label-Required">必須</span>お名前
       </p>
-      <input type="text" class="Form-Item-Input" placeholder="山田太郎" value="<?= $name; ?>">
+      <input type="text" class="Form-Item-Input" placeholder="山田太郎" value="<?= $name; ?>" name="name">
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>フリガナ</p>
-      <input type="text" class="Form-Item-Input" placeholder="ヤマダタロウ"  value="<?= $furigana; ?>">
+      <input type="text" class="Form-Item-Input" placeholder="ヤマダタロウ"  value="<?= $furigana; ?>" name="furigana">
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>メールアドレス</p>
-      <input type="email" class="Form-Item-Input" placeholder="example@gmail.com"  value="<?= $email; ?>">
+      <input type="text" class="Form-Item-Input" placeholder="example@gmail.com"  value="<?= $email; ?>" name="email">
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>電話番号</p>
-      <input type="text" class="Form-Item-Input" placeholder="000-0000-0000"  value="<?= $tel; ?>">
+      <input type="text" class="Form-Item-Input" placeholder="00000000000"  value="<?= $tel; ?>" name="tel">
     </div>
+
+    <div class="Form-Item">
+      <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>お問合せ項目</p>
+      <select class="Form-Item-Input" tabindex="0" name="select">
+        <option option value tabindex="0" selected>選択してください</option>
+        <option value="選択1" tabindex="1" <?php if($sel == '選択1'){echo "selected";}?>>選択1</option>
+        <option value="選択2" tabindex="1" <?php if($sel == '選択2'){echo "selected";}?>>選択2</option>
+        <option value="選択3" tabindex="1" <?php if($sel == '選択3'){echo "selected";}?>>選択3</option>
+      </select>
+    </div>
+    
     <div class="Form-Item">
       <p class="Form-Item-Label isMsg"><span class="Form-Item-Label-Required">必須</span>お問い合わせ内容</p>
-      <textarea class="Form-Item-Textarea"  value="<?= $inq; ?>"></textarea>
+      <textarea class="Form-Item-Textarea"  name="inq"><?= $inq; ?></textarea>
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>個人情報保護方針</p>
-      <input type="checkbox" style="margin-left: 35px;">
+      <input type="checkbox" style="margin-left: 35px;" 
+      <?php if($check == 'on'){echo "checked";}?> name="check">
       <span><a class="PII" href="https://www.google.co.jp/">個人情報保護方針</a>に同意します。</span>
     </div>
-    <input type="submit" class="Form-Btn" value="確認">
+    <!-- <input type="submit" class="Form-Btn" value="確認"> -->
+    <?php
+      if ($allok) {
+        echo '<input type="submit" class="Form-Btn" value="送信">';
+      } else {
+        echo '<input type="submit" class="Form-Btn" value="確認">';
+      }
+    ?>
   </form>
 </div>
 
