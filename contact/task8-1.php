@@ -44,60 +44,89 @@
   $furigana = $_POST["furigana"];
   $email = $_POST["email"];
   $tel = $_POST["tel"];
-  $sel = $_POST["select"];
+  $sel = $_POST["sel"];
   $inq = $_POST["inq"];
   $check = $_POST["check"];
   $allok = false;
-
-
+  
+  
   //if文使って入力確認
   $errors = [];
-
+  
   if (empty($name)) {
-      $errors[] = "名前が未入力です。";
+    $errors[] = "名前が未入力です。";
   }
-
+  
   if (empty($furigana)) {
-      $errors[] = "フリガナが未入力です。";
+    $errors[] = "フリガナが未入力です。";
   }
-
+  
   if (empty($email)) {
-      $errors[] = "メールアドレスが未入力です。";
+    $errors[] = "メールアドレスが未入力です。";
   }elseif(strpos($email,'@') === false){
-      $errors[] = "@が含まれていません。";
+    $errors[] = "@が含まれていません。";
   }
-
+  
   if (empty($tel)) {
-      $errors[] = "電話番号が未入力です。";
+    $errors[] = "電話番号が未入力です。";
   } elseif (strlen($tel) != 10 && strlen($tel) != 11) {
     $errors[] = "電話番号は10桁または11桁で入力してください。";
   }
-
+  
   if (empty($sel)) {
-      $errors[] = "お問い合わせ内容が未選択です。";
+    $errors[] = "お問い合わせ項目が未選択です。";
   }
-
+  
   if (empty($inq)) {
-      $errors[] = "お問い合わせ内容が未入力です。";
+    $errors[] = "お問い合わせ内容が未入力です。";
   }  elseif (strlen($inq) < 10 || strlen($inq) > 256) {
     $errors[] = "10文字以上 256文字以内で入力してください";
   }
-
+  
   if (empty($check)) {
-      $errors[] = "チェックが入っていません。";
+    $errors[] = "チェックが入っていません。";
   }  
   
   if ($errors) {
-      foreach ($errors as $error) {
-          echo "<span style='color: red;'> $error <br></span>";
-      }
-      $allok = false;
+    foreach ($errors as $error) {
+      echo "<span style='color: red;'> $error <br></span>";
+    }
+    $allok = false;
   } else {
-      echo "全ての入力が確認されました。";
-      $allok = true;
+    echo "全ての入力が確認されました。";
+    $allok = true;
+  }
+
+  if ($allok) {
+    try {
+      // データベース接続情報
+      $pdo = new PDO(
+        'mysql:host=localhost;dbname=consumer;charset=utf8mb4',
+        'root',
+        'root'
+      );
+      // エラーモードを例外に設定
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+      // データベースにデータを挿入
+      $stmt = $pdo->prepare("INSERT INTO inquiries (name, furigana, email, tel, inquiry_type, inquiry, consent, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
+      $stmt->bindParam(1, $name, PDO::PARAM_STR);
+      $stmt->bindParam(2, $furigana, PDO::PARAM_STR);
+      $stmt->bindParam(3, $email, PDO::PARAM_STR);
+      $stmt->bindParam(4, $tel, PDO::PARAM_STR);
+      $stmt->bindParam(5, $sel, PDO::PARAM_STR);
+      $stmt->bindParam(6, $inq, PDO::PARAM_STR);
+      $stmt->bindParam(7, $check, PDO::PARAM_BOOL);
+      $stmt->execute();
+
+      echo "データが正常に送信されました。";
+    } catch (PDOException $e) {
+      echo "データベース接続に失敗しました: " . $e->getMessage();
+    }
   }
 
   $action = $allok ? 'task8-2.php' : 'task8-1.php';
+
 ?>
 
 <div class="Form">
@@ -123,7 +152,7 @@
 
     <div class="Form-Item">
       <p class="Form-Item-Label"><span class="Form-Item-Label-Required">必須</span>お問合せ項目</p>
-      <select class="Form-Item-Input" tabindex="0" name="select">
+      <select class="Form-Item-Input" tabindex="0" name="sel">
         <option option value tabindex="0" selected>選択してください</option>
         <option value="選択1" tabindex="1" <?php if($sel == '選択1'){echo "selected";}?>>選択1</option>
         <option value="選択2" tabindex="1" <?php if($sel == '選択2'){echo "selected";}?>>選択2</option>
