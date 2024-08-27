@@ -91,41 +91,13 @@
     foreach ($errors as $error) {
       echo "<span style='color: red;'> $error <br></span>";
     }
-    $allok = false;
   } else {
     echo "全ての入力が確認されました。";
-    $allok = true;
   }
 
-  if ($allok) {
-    try {
-      // データベース接続情報
-      $pdo = new PDO(
-        'mysql:host=localhost;dbname=consumer;charset=utf8mb4',
-        'root',
-        'root'
-      );
-      // エラーモードを例外に設定
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      // データベースにデータを挿入
-      $stmt = $pdo->prepare("INSERT INTO inquiries (name, furigana, email, tel, inquiry_type, inquiry, consent, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
-      $stmt->bindParam(1, $name, PDO::PARAM_STR);
-      $stmt->bindParam(2, $furigana, PDO::PARAM_STR);
-      $stmt->bindParam(3, $email, PDO::PARAM_STR);
-      $stmt->bindParam(4, $tel, PDO::PARAM_STR);
-      $stmt->bindParam(5, $sel, PDO::PARAM_STR);
-      $stmt->bindParam(6, $inq, PDO::PARAM_STR);
-      $stmt->bindParam(7, $check, PDO::PARAM_BOOL);
-      $stmt->execute();
 
-      echo "データが正常に送信されました。";
-    } catch (PDOException $e) {
-      echo "データベース接続に失敗しました: " . $e->getMessage();
-    }
-  }
-
-  $action = $allok ? 'task8-2.php' : 'task8-1.php';
+  $action = $errors ?'': 'task9-1.php' ;
 
 ?>
 
@@ -170,14 +142,7 @@
       <?php if($check == 'on'){echo "checked";}?> name="check">
       <span><a class="PII" href="https://www.google.co.jp/">個人情報保護方針</a>に同意します。</span>
     </div>
-    <!-- <input type="submit" class="Form-Btn" value="確認"> -->
-    <?php
-      if ($allok) {
-        echo '<input type="submit" class="Form-Btn" value="送信">';
-      } else {
-        echo '<input type="submit" class="Form-Btn" value="確認">';
-      }
-    ?>
+    <input type="submit" class="Form-Btn" value="<?php if($errors){echo '確認';}else{echo '送信';}?>">
   </form>
 </div>
 
